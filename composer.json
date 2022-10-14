@@ -1,0 +1,19 @@
+{
+    "name": "flattens/inertia",
+    "description": "An inertia adapter for statamic",
+    "require": {
+        "inertiajs/inertia-laravel": "^0.5.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Flattens\\Inertia\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tobias Thaden",
+            "email": "hello@tobiasthaden.com"
+        }
+    ]
+}

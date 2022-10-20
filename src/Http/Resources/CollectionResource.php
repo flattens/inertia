@@ -111,8 +111,11 @@ class CollectionResource extends Resource
             ->updateWheres($wheres);
 
         if (Arr::has($args, 'order')) {
-            [$column, $direction] = explode('::', Arr::get($args, 'order'));
-            $query = $query->orderBy($column, $direction ?? 'asc');
+            $column = explode('::', Arr::get($args, 'order'));
+
+            $direction = $column[1] ?? 'asc';
+
+            $query = $query->orderBy($column[0], $direction);
         }
 
         if ($this->value->dated() && !Arr::has($args, 'order')) {

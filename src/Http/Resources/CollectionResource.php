@@ -110,7 +110,12 @@ class CollectionResource extends Resource
         $query = $this->value->queryEntries()
             ->updateWheres($wheres);
 
-        if ($this->value->dated()) {
+        if (Arr::has($args, 'order')) {
+            [$column, $direction] = explode('::', Arr::get($args, 'order'));
+            $query = $query->orderBy($column, $direction ?? 'asc');
+        }
+
+        if ($this->value->dated() && !Arr::has($args, 'order')) {
             $query = $query->orderBy('date', $this->value->sortDirection());
         }
 

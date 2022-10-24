@@ -113,6 +113,12 @@ class CollectionResource extends Resource
         if ($this->value->dated()) {
             $query = $query->orderBy('date', $this->value->sortDirection());
         }
+        
+        if (Arr::has($args, 'order')) {
+            [$column, $direction] = explode(',', Arr::get($args, 'order').',asc');
+            
+            $query = $query->orderBy($column, $direction);
+        }
 
         if (Arr::has($args, 'limit')) {
             $query = $query->limit($args['limit']);
